@@ -1,5 +1,6 @@
 package com.varkashy.kafka;
 
+import com.varkashy.kafka.util.ConfigUtil;
 import org.apache.kafka.clients.producer.KafkaProducer;
 import org.apache.kafka.clients.producer.ProducerConfig;
 import org.apache.kafka.clients.producer.ProducerRecord;
@@ -11,10 +12,7 @@ public class Producer {
 
     public static void main(String[] args) {
         // Create Producer properties
-        Properties kafkaProperties = new Properties();
-        kafkaProperties.setProperty(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG,"127.0.0.1:9092");
-        kafkaProperties.setProperty(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class.getName());
-        kafkaProperties.setProperty(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG,StringSerializer.class.getName());
+        Properties kafkaProperties = ConfigUtil.getProperties();
 
         //Create Producer
         KafkaProducer<String,String> kafkaProducer = new KafkaProducer<String, String>(kafkaProperties);
