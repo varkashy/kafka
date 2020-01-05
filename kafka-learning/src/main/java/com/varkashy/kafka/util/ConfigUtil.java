@@ -1,6 +1,9 @@
 package com.varkashy.kafka.util;
 
+import com.varkashy.kafka.Consumer;
+import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.clients.producer.*;
+import org.apache.kafka.common.serialization.StringDeserializer;
 import org.apache.kafka.common.serialization.StringSerializer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -41,5 +44,15 @@ public class ConfigUtil<K,V> {
             }
         });
 
+    }
+
+    public static Properties getConsumerProperties(String groupId, String offsetConfig) {
+        Properties consumerProperties = new Properties();
+        consumerProperties.setProperty(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG,"localhost:9092");
+        consumerProperties.setProperty(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class.getName());
+        consumerProperties.setProperty(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG,StringDeserializer.class.getName());
+        consumerProperties.setProperty(ConsumerConfig.GROUP_ID_CONFIG,groupId);
+        consumerProperties.setProperty(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG,offsetConfig);
+        return  consumerProperties;
     }
 }

@@ -19,7 +19,7 @@ public class Producer {
 
         //Send Data
         for(int startIndex=0;startIndex<5;startIndex++){
-            kafkaProducer.send(new ProducerRecord<String, String>("first-topic","hello world from java with index "+startIndex));
+            kafkaProducer.send(new ProducerRecord<String, String>("fourth_topic","hello world from java with index "+startIndex));
         }
         kafkaProducer.flush();
 
